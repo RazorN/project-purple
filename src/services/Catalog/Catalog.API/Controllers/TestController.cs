@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Catalog.Domain;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Catalog.API.Controllers
         [HttpGet]
         public String GetHello()
         {
-            return "Hello from catalog !!!";
+            return new TestClass().TestString;
         }
     }
 }
