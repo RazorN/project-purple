@@ -7,5 +7,10 @@ namespace Catalog.Infrastructure.Database
 {
     public class CatalogContext : DbContext
     {
+        public CatalogContext(DbContextOptions options)
+            : base(options)
+        {
+
+        }
     }
 }
