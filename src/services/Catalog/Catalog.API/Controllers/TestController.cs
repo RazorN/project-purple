@@ -1,4 +1,6 @@
-﻿using Catalog.Domain;
+﻿using Catalog.API.Application.Queries;
+using Catalog.Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,16 +15,18 @@ namespace Catalog.API.Controllers
     public class TestController : ControllerBase
     {
         private readonly ILogger<TestController> _logger;
+        private readonly IMediator _mediator;
 
-        public TestController(ILogger<TestController> logger)
+        public TestController(ILogger<TestController> logger, IMediator mediator)
         {
             _logger = logger;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public String GetHello()
+        public String GetHello(string userName)
         {
-            return new TestClass().TestString;
+            return _mediator.Send(new GetTestDataQuery() { userName = userName }).Result.testMessage;
         }
     }
 }
