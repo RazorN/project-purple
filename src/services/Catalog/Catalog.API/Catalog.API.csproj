@@ -27,9 +27,5 @@
     <ProjectReference Include="..\Catalog.Infrastructure\Catalog.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Application\Queries\Handlers\" />
-  </ItemGroup>
-
 
 </Project>

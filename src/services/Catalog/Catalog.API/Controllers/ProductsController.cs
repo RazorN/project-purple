@@ -1,4 +1,6 @@
 ﻿using Catalog.API.Application.Commands;
+using Catalog.API.Application.Models;
+using Catalog.API.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,10 +23,22 @@ namespace Catalog.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> GetHello([FromBody]CreateProductCommand command)
+        public async Task<IActionResult> CreateProduct([FromBody]CreateProductCommand command)
         {
-            await _mediator.Send(command);
-            return CreatedAtAction(nameof(CreateProductCommand), new { id = Guid.NewGuid() }, command);
+            var product = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetProductById), new { id = product.ProductId }, product);
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<ProductDto>> GetAllProducts()
+        {
+            return await _mediator.Send(new GetAllProductsQuery());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ProductDto> GetProductById([FromRoute]GetProductByIdQuery query)
+        {
+            return await _mediator.Send(query);
         }
     }
 }
