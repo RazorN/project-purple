@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Catalog.API.Application.Models
 {
-    public class TestDataDto
+    public class ProductDto
     {
-        public string testMessage;
+        public Guid ProductId { get; set; }
+        public string Name { get; set; }
     }
 }

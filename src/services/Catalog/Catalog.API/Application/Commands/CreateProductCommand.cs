@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Catalog.API.Application.Queries
+namespace Catalog.API.Application.Commands
 {
-    public class GetTestDataQuery : IRequest<TestDataDto>
+    public class CreateProductCommand : IRequest<ProductDto>
     {
-        public string userName;
+        public string Name { get; set; }
     }
 }

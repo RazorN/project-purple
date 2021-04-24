@@ -1,4 +1,5 @@
-﻿using Catalog.Infrastructure.Database;
+﻿using Catalog.Domain.ProductAggregate;
+using Catalog.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,8 @@ namespace Catalog.Infrastructure
 
             services.AddDbContext<CatalogContext>(options =>
                 options.UseNpgsql(config.GetConnectionString("CatalogContext")));
+
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             return services;
         }
